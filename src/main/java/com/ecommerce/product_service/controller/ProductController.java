@@ -1,5 +1,7 @@
 package com.ecommerce.product_service.controller;
 
+import com.ecommerce.product_service.dto.ProductRequestDTO;
+import com.ecommerce.product_service.dto.ProductResponseDTO;
 import com.ecommerce.product_service.entity.Product;
 import com.ecommerce.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product){
-        return productService.createProduct(product);
+    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO request){
+
+        return productService.createProduct(request);
     }
 }
