@@ -5,6 +5,7 @@ import com.ecommerce.product_service.dto.ProductRequestDTO;
 import com.ecommerce.product_service.dto.ProductResponseDTO;
 import com.ecommerce.product_service.entity.Product;
 import com.ecommerce.product_service.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping
-    public APIResponse<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO request){
+    public APIResponse<ProductResponseDTO> createProduct(@Valid @RequestBody ProductRequestDTO request){
 
         ProductResponseDTO response = productService.createProduct(request);
 
