@@ -7,10 +7,7 @@ import com.ecommerce.product_service.entity.Product;
 import com.ecommerce.product_service.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
@@ -25,5 +22,17 @@ public class ProductController {
         ProductResponseDTO response = productService.createProduct(request);
 
         return new APIResponse<>("SUCCESS","Product created successfully",response);
+    }
+
+    @GetMapping("/{id}")
+    public APIResponse<ProductResponseDTO>getProductById(@PathVariable String id){
+        ProductResponseDTO response = productService.getProductById(id);
+        return new APIResponse<>("SUCCESS","Product fetched successfully",response);
+    }
+
+    @PutMapping("/{id}/reduce-stock")
+    public APIResponse<ProductResponseDTO>reduceStock(@PathVariable String id, @RequestParam Integer quantity){
+        ProductResponseDTO response = productService.reduceStock(id, quantity);
+        return new APIResponse<>("SUCCESS","Stock reduced successfully",response);
     }
 }
