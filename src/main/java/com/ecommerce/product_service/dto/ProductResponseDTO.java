@@ -2,9 +2,10 @@ package com.ecommerce.product_service.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 @Data
-public class ProductResponseDTO {
+public class ProductResponseDTO implements Serializable {
 
     private String id;
     private String name;

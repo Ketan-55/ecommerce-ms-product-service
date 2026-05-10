@@ -8,6 +8,7 @@ import com.ecommerce.product_service.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -50,6 +51,7 @@ public class ProductService {
         return response;
     }
 
+    @Cacheable(value = "products", key = "#id")
     public ProductResponseDTO getProductById(String id){
         log.info("Fetching product with id: {}", id);
 
